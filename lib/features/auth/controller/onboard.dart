@@ -68,14 +68,18 @@ class OnBoardController extends State<OnBoard> {
   void goToRegister() {
     Navigator.pushReplacement(
       context,
-      CupertinoPageRoute(builder: (context) => const Login()),
+      CupertinoPageRoute(builder: (context) => const LoginScreen()),
     );
+  }
+
+  void onBackPressed() {
+    Navigator.pop(context);
   }
 
   void goToLogin() {
     Navigator.pushReplacement(
       context,
-      CupertinoPageRoute(builder: (context) => const Login()),
+      CupertinoPageRoute(builder: (context) => const LoginScreen()),
     );
   }
 }

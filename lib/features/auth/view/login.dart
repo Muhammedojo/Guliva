@@ -1,12 +1,15 @@
 import 'package:flutter/gestures.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:guliva/core/helper/widget_helper.dart';
 import 'package:guliva/core/utils/extensions.dart';
+import 'package:guliva/features/home/controller/home.dart';
 import '../../../core/utils/utils.dart';
+import '../bloc/cubit.dart';
 import '../controller/login.dart';
 import '../controller/onboard.dart';
 
-class LoginView extends StatelessView<Login, LoginController> {
+class LoginView extends StatelessView<LoginScreen, LoginController> {
   const LoginView(LoginController state, {Key? key}) : super(state, key: key);
 
   @override
@@ -168,31 +171,46 @@ class LoginView extends StatelessView<Login, LoginController> {
               ],
             ),
             SizedBox(height: 30.0.h),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.guliBlue,
+            BlocListener<LoginCubit, LoginState>(
+              listener: (context, loginState) {
+                if (loginState is LoginLoading) {
+                  WidgetHelper.showProgress(text: "Checking");
+                } else if (loginState is LoginLoaded) {
+                  WidgetHelper.hideProgress();
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(5.0), // Minimal border radius
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Home()),
+                  );
+                } else if (loginState is LoginFailure) {
+                  WidgetHelper.hideProgress();
+                  WidgetHelper.showToastError(
+                      context, loginState.message.toString());
+                }
+              },
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.guliBlue,
+
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              5.0), // Minimal border radius
+                        ),
+                        padding: REdgeInsets.symmetric(
+                            vertical: 15), // Padding for button height
                       ),
-                      padding: REdgeInsets.symmetric(
-                          vertical: 15), // Padding for button height
+                      onPressed: () {
+                        state.onPressLoginButton();
+                      },
+                      child: 'LOG IN'.toText(
+                          color: AppColors.backgroundWhite, fontSize: 16),
                     ),
-                    onPressed: () {
-                      // Navigator.pushReplacement(
-                      //   context,
-                      //   CupertinoPageRoute(builder: (context) => const Dash()),
-                      // );
-                    },
-                    child: 'LOG IN'
-                        .toText(color: AppColors.backgroundWhite, fontSize: 16),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 30.0.h),
             Center(

@@ -16,9 +16,9 @@ class FavouriteController extends State<Favourite> {
   int selectedIndex = 0;
   static const List<Widget> widgetOptions = <Widget>[
     SplashScreen(),
-    Login(),
+    LoginScreen(),
     SplashScreen(),
-    Login(),
+    LoginScreen(),
   ];
 
   @override

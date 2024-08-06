@@ -1,5 +1,4 @@
 import 'package:flutter/gestures.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:guliva/core/utils/extensions.dart';
 
 import '../../../core/helper/widget_helper.dart';
@@ -13,8 +12,9 @@ class OnBoardView extends StatelessView<OnBoard, OnBoardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: WidgetHelper.appBarBorderlessWithActionAndText2(
-            context, () {}, () {},
+        appBar: WidgetHelper.appBarBorderlessWithActionAndText2(context, () {
+          state.onBackPressed();
+        }, () {},
             backgroundColor: AppColors.backgroundWhite,
             foregroundColor: AppColors.backgroundWhite),
         backgroundColor: AppColors.backgroundWhite,
