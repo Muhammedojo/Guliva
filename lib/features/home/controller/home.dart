@@ -35,6 +35,8 @@ class HomeController extends State<Home> {
   Widget build(BuildContext context) => HomeView(this);
 
 //Control logic grouped together, at top of file
+  TextEditingController bagController = TextEditingController();
+
   List<Category> details = [
     Category(title: 'Rice', url: 'assets/images/cat.jpg'),
     Category(title: 'Stew', url: 'assets/images/stew.jpg'),

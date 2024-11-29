@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,6 +6,7 @@ import 'package:guliva/core/helper/widget_helper.dart';
 import 'package:guliva/core/utils/extensions.dart';
 import 'package:guliva/features/home/controller/home.dart';
 import '../../../core/utils/utils.dart';
+import '../../home/controller/dashboard.dart';
 import '../bloc/cubit.dart';
 import '../controller/login.dart';
 import '../controller/onboard.dart';
@@ -90,12 +92,7 @@ class LoginView extends StatelessView<LoginScreen, LoginController> {
                     padding: REdgeInsets.symmetric(
                         vertical: 15), // Padding for button height
                   ),
-                  onPressed: () {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   CupertinoPageRoute(builder: (context) => const Dash()),
-                    // );
-                  },
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -203,7 +200,12 @@ class LoginView extends StatelessView<LoginScreen, LoginController> {
                             vertical: 15), // Padding for button height
                       ),
                       onPressed: () {
-                        state.onPressLoginButton();
+                        // state.onPressLoginButton();
+                        Navigator.pushReplacement(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const Dash()),
+                        );
                       },
                       child: 'LOG IN'.toText(
                           color: AppColors.backgroundWhite, fontSize: 16),

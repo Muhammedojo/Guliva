@@ -68,9 +68,7 @@ class FavouriteView extends StatelessView<Favourite, FavouriteController> {
               SizedBox(
                 height: 400.h,
                 child: ListView.separated(
-                  itemBuilder: (context, index) => FavoriteCardWidget(
-                      // data: state.details[index],
-                      ),
+                  itemBuilder: (context, index) => Text('Hello'),
                   separatorBuilder: (context, index) => SizedBox(
                     height: 10.w,
                   ),
