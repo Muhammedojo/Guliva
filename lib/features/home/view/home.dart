@@ -4,6 +4,7 @@ import 'package:guliva/features/home/widget/video_page.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../core/utils/utils.dart';
 import '../controller/home.dart';
+import '../widget/audio_page.dart';
 import '../widget/category_card.dart';
 import '../widget/lunch_card.dart';
 
@@ -36,19 +37,36 @@ class HomeView extends StatelessView<Home, HomeController> {
                           .toText(fontSize: 17.sp, fontWeight: FontWeight.w600)
                     ],
                   ),
-                  InkWell(
-                      onTap: () {
-                        // showModal(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VideoPlayerPage()),
-                        );
-                      },
-                      child: const Icon(
-                        Icons.notifications_none_outlined,
-                        color: Colors.amber,
-                      ))
+                  Row(
+                    children: [
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VideoPlayerPage()),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.video_file,
+                            color: Colors.blue,
+                          )),
+                      InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AudioPlayerPage()),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.audio_file,
+                            color: Colors.amber,
+                          ))
+                    ],
+                  )
                 ],
               ),
               SizedBox(
